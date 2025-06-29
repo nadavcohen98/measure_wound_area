@@ -3,22 +3,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def biggest_black_hole(image_path):
-    # Calibration
-    microns_per_pixel = 500 / 580  # µm/pixel
+    
+    microns_per_pixel = # put your pixel to length ratio according to your image
     area_per_pixel = microns_per_pixel ** 2  # µm²/pixel
-
-    # Step 1: Load grayscale
+    
     gray = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
     if gray is None:
         raise IOError("Image not found")
-    
 
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
 
-    
-
-
-    # Step 2: Adaptive thresholding
+    # Adaptive thresholding
     adaptive = cv2.adaptiveThreshold(
         gray, 255,
         cv2.ADAPTIVE_THRESH_MEAN_C,
@@ -26,28 +21,22 @@ def biggest_black_hole(image_path):
         blockSize=11,
         C=5
     )
-
-    # extra try 
-    #midian = cv2.medianBlur(adaptive, 5)
-    # Apply erosion and dilation
-    #dilated = cv2.dilate(midian, kernel, iterations=1)
-    #eroded = cv2.erode(dilated, kernel, iterations=1)
     
-    # Step 2.1: Remove small noise
+    # Remove small noise
     eroded = cv2.morphologyEx(
         adaptive,
         cv2.MORPH_OPEN,
         cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
     )
     
-    # Step 3: Morphological closing
+    # Morphological closing
     closed = cv2.morphologyEx(
         adaptive,
         cv2.MORPH_CLOSE,
         cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
     )
 
-    # Step 4: Isolate largest component
+    # Isolate largest component
     num_labels, labels = cv2.connectedComponents(closed)
     if num_labels > 1:
         max_label = 1 + np.argmax(np.bincount(labels.flat)[1:])
@@ -55,7 +44,7 @@ def biggest_black_hole(image_path):
     else:
         wound_only = closed
 
-    # Step 5: Find contours on inverted mask
+    # Find contours on inverted mask
     inverted = cv2.bitwise_not(wound_only)
     _, hole_mask = cv2.threshold(inverted, 127, 255, cv2.THRESH_BINARY)
     contours, _ = cv2.findContours(
@@ -80,7 +69,7 @@ def biggest_black_hole(image_path):
     # Compute area in µm²
     best_area_um2 = best_area_px * area_per_pixel
 
-    # Step 6: Draw contour and label
+    # Draw contour and label
     vis = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
     cv2.drawContours(vis, [best_contour], -1, (0, 255, 0), 2)
 
@@ -91,7 +80,7 @@ def biggest_black_hole(image_path):
         cv2.putText(vis, "1", (cx, cy),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
 
-    # Step 7: Show original and annotated images
+    # Show original and annotated images
     plt.figure(figsize=(12, 6))
 
     plt.subplot(1, 2, 1)
@@ -108,8 +97,8 @@ def biggest_black_hole(image_path):
     plt.tight_layout()
     plt.show()
 
-    print(f"✅ Wound Area = {best_area_px:.0f} px² ≈ {best_area_um2:.2f} μm²")
+    print(f"Wound Area = {best_area_px:.0f} px² ≈ {best_area_um2:.2f} μm²")
 
 if __name__ == "__main__":
-    image_path = "/Users/nadavcohen/Desktop/Universuty/final_project/phyton_code/images 18.5/4.1 0.tif"
+    image_path = #put the path for your .tif image
     biggest_black_hole(image_path)
