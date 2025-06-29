@@ -1,7 +1,4 @@
-# measure_wound_area
-
 # Wound Mask Cleanup & Area Measurement
-Robust, reproducible post-processing for scratch-wound assays
 ============================================================
 
 > **Objective** Automatically clean binary wound masks, extract the largest wound
