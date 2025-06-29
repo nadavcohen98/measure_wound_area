@@ -1,3 +1,4 @@
+![Cleaned wound mask](python_code.png)
 # Wound Mask Cleanup & Area Measurement
 ============================================================
 
