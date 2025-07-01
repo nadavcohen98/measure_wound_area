@@ -63,7 +63,7 @@ def biggest_black_hole(image_path):
             best_contour = cnt
 
     if best_contour is None:
-        print("❌ No valid wound contour found.")
+        print("No valid wound contour found.")
         return
 
     # Compute area in µm²
