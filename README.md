@@ -1,9 +1,9 @@
-# Wound Mask Cleanup & Area Measurement
-============================================================
+# Wound Area Measurement
+
 ![Example Wound Image](https://github.com/nadavcohen98/measure_wound_area/blob/main/CodeImage.png?raw=true)
 
 > **Objective** Automatically clean binary wound masks, extract the largest wound
-> region, and report its area—ready for high-throughput cell-migration or
+> region, and calculate it's area —ready for high-throughput cell-migration or
 > wound-healing studies.
 
 ---
