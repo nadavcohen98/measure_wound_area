@@ -1,4 +1,4 @@
-# Wound Area Measurement
+# Measure Wound Area
 
 ![Example Wound Image](https://github.com/nadavcohen98/measure_wound_area/blob/main/CodeImage.png?raw=true)
 
