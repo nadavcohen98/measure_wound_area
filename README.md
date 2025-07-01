@@ -13,10 +13,7 @@
 2. [Key Features](#key-features)
 3. [Quick Start](#quick-start)
 4. [Command-Line Usage](#command-line-usage)
-5. [Python API](#python-api)
-6. [Repository Layout](#repository-layout)
-7. [Citation](#citation)
-8. [License](#license)
+
 
 ---
 
