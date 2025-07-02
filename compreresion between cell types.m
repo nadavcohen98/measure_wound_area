@@ -1,10 +1,10 @@
 % File paths
-file_NIH3T3 = '/Users/nadavcohen/Desktop/Universuty/final_project/matlab/wound_size_table_NIH3T3.xlsx';
-file_C2C12 = '/Users/nadavcohen/Desktop/Universuty/final_project/matlab/wound_size_table_C2C12.xlsx';
+file_cell_type_one = 'path to one type of cell line';
+file_cell_type_two = 'path to second type of cell line';
 
 % Load both tables
-data1 = readtable(file_NIH3T3);
-data2 = readtable(file_C2C12);
+data1 = readtable(file_cell_type_one);
+data2 = readtable(file_cell_type_two);
 
 % Extract time and group info
 plate_ids1 = data1.Var1;
@@ -37,10 +37,10 @@ for g = 1:4
     for d = 1:2  % d=1 for NIH3T3, d=2 for C2C12
         if d == 1
             group_data = pixel_values1(group_ids1 == g, :);
-            label = 'NIH3T3';
+            label = 'cell type one';
         else
             group_data = pixel_values2(group_ids2 == g, :);
-            label = 'C2C12';
+            label = 'Cell type two';
         end
 
         % Normalize by t=0
