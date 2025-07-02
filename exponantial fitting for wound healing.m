@@ -1,5 +1,5 @@
 % Load data
-filename = '/Users/nadavcohen/Desktop/Universuty/final_project/matlab/wound_size_table_C2C12.xlsx';
+filename ='file path'; %put here your table of wound sized per hour
 data = readtable(filename);
 plate_ids = data.Var1;
 pixel_values = data{:, 2:end};
